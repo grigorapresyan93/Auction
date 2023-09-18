@@ -1,16 +1,16 @@
 import className from 'classnames';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, ButtonHTMLAttributes } from 'react';
 
-interface IButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  primary: boolean;
-  secondary: boolean;
-  success: boolean;
-  warning: boolean;
-  danger: boolean;
-  outline: boolean;
-  rounded: boolean;
-  loading: boolean;
+interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  children?: ReactNode;
+  primary?: boolean;
+  secondary?: boolean;
+  success?: boolean;
+  warning?: boolean;
+  danger?: boolean;
+  outline?: boolean;
+  rounded?: boolean;
+  loading?: boolean;
 }
 
 const Button: FC<IButtonProps> = ({

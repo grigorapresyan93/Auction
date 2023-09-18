@@ -9,47 +9,47 @@
 900: Black (Heavy) */
 
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 100;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Thin.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Thin.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 300;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Light.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Light.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 400;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Regular.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Regular.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 500;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Medium.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Medium.ttf') format('truetype');
 }
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 700;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Bold.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Bold.ttf') format('truetype');
 }
 
 @font-face {
-  font-family: "Mardoto";
+  font-family: 'Mardoto';
   font-style: normal;
   font-weight: 900;
   font-display: fallback;
-  src: url("./assets/fonts/Mardoto-Black.ttf") format("truetype");
+  src: url('../fonts/Mardoto-Black.ttf') format('truetype');
 }

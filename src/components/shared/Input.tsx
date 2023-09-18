@@ -1,7 +1,7 @@
 import className from 'classnames';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, InputHTMLAttributes } from 'react';
 
-interface IInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string;
   suffix?: ReactNode | string;
   label?: string;

@@ -1,7 +1,6 @@
 import className from 'classnames';
-import { FC, useRef } from 'react';
+import { FC, useRef, ClipboardEvent, KeyboardEvent, FormEvent, RefObject } from 'react';
 // import { ClipboardEvent } from '../../interface/clipboard.interface';
-import { ClipboardEvent } from 'react';
 const VERIFICATION_INPUT_BASE_CLASSES = className(
   'w-[45px] md:min-w-[60px] h-[45px] md:min-h-[60px] outline-none text-center font-mardoto text-[20px] border rounded-lg border-[#667085] bg-[#fff]'
 );
@@ -13,7 +12,7 @@ interface IVerificationInputProps {
   error: string;
   handleCodeCheck: (value: string) => void;
 }
-type KeyHandler = (e: React.KeyboardEvent<HTMLInputElement>, index: number) => void;
+type KeyHandler = (e: KeyboardEvent<HTMLInputElement>, index: number) => void;
 
 const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck }) => {
   const inputs: (HTMLInputElement | null)[] = Array.from({ length: 6 });
@@ -25,7 +24,7 @@ const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck
     [39]: (e, index) => handleArrowRight(e, index)
   };
 
-  const handleInput = (e: React.FormEvent<HTMLInputElement> | any, index: number) => {
+  const handleInput = (e: FormEvent<HTMLInputElement> | any, index: number) => {
     const { value } = e.target;
 
     if (value && index < inputs.length - 1) {
@@ -82,7 +81,7 @@ const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck
 
   const getInputValues = () => {
     return inputRefs
-      .map((item: React.RefObject<HTMLInputElement> | any) => item.current.value)
+      .map((item: RefObject<HTMLInputElement> | any) => item.current.value)
       .filter((item: any) => item)
       .join('');
   };
