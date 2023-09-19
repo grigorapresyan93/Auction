@@ -99,7 +99,6 @@ const WritePassword = () => {
     .filter((item) => item !== undefined)
     .join(", ");
 
-
   const toggleInputEye = (type: string, updatedIndex: number) => {
     const toggledFields = inputFields.map((field, index) =>
       updatedIndex === index ? { ...field, props: { ...field.props, type: type } } : field
