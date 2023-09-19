@@ -92,14 +92,13 @@ const WritePassword = () => {
     passwordState.repeat_password
   );
 
-  console.log(validationObject.isTheSame);
-
+  const { isTheSame, ...rest } = validationObject;
   useEffect(() => {
     if (!passwordState.password.length) {
       setHasFalseValue(false);
       return;
     }
-    setHasFalseValue(Object.values(validationObject).some((value) => value === false));
+    setHasFalseValue(Object.values(rest).some((value) => value === false));
   }, [validationObject]);
 
   const renderedItems = PASS_REQUIREMENTS.map(({ req, text }) => {
