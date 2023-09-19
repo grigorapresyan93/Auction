@@ -2,7 +2,7 @@ import sideImage from '../../assets/images/img.svg';
 import help from '../../assets/images/help.svg';
 import { FC, ReactNode } from 'react';
 
-import AuthFooter from './AuthFooter.jsx';
+import AuthFooter from './AuthFooter';
 interface IAuthWrapperProps {
   children: ReactNode;
 }

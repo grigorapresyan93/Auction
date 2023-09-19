@@ -10,8 +10,11 @@ const ERROR_TEXT_BASE_CLASSES = className(
 );
 interface IVerificationInputProps {
   error: string;
+  // eslint-disable-next-line no-unused-vars
   handleCodeCheck: (value: string) => void;
 }
+
+// eslint-disable-next-line no-unused-vars
 type KeyHandler = (e: KeyboardEvent<HTMLInputElement>, index: number) => void;
 
 const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck }) => {
@@ -89,7 +92,8 @@ const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck
   return (
     <form>
       <div
-        className={'w-[300px] md:min-w-[424px] lg:min-w-[415px] flex items-center justify-between'}>
+        className={'w-[300px] md:min-w-[424px] lg:min-w-[415px] flex items-center justify-between'}
+      >
         {inputs.map((_, index) => (
           <input
             key={index}
