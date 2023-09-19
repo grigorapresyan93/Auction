@@ -1,5 +1,5 @@
-import className from 'classnames';
-import { FC, ReactNode, InputHTMLAttributes } from 'react';
+import className from "classnames";
+import { FC, ReactNode, InputHTMLAttributes } from "react";
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string;
@@ -11,9 +11,9 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 const Input: FC<IInputProps> = ({ prefix, suffix, label, error, ...rest }) => {
   const classes = className(
     rest.className,
-    'outline-none focus:outline-none focus-visible:outline-none border',
+    "outline-none focus:outline-none focus-visible:outline-none border",
     {
-      'border-[#F34635]': error
+      "border-[#F34635]": error
     }
   );
 
@@ -26,13 +26,13 @@ const Input: FC<IInputProps> = ({ prefix, suffix, label, error, ...rest }) => {
       )}
       {prefix ? (
         <div>
-          <span>Prefix</span>
+          {prefix}
           <input {...rest} className={classes} />
         </div>
       ) : suffix ? (
         <div className="flex items-center ">
           <input {...rest} className={classes} />
-          <span>suffix</span>
+          {suffix}
         </div>
       ) : (
         <input {...rest} className={classes} />

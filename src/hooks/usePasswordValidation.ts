@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { IPasswordValidationResult } from '../interface/auth.interface';
+import { useState, useEffect } from "react";
+import { IPasswordValidationResult } from "../interface/auth.interface";
 
 const usePasswordValidation = (password: string): IPasswordValidationResult => {
   const [isValidLength, setIsValidLength] = useState(false);

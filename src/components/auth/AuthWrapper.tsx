@@ -1,8 +1,8 @@
-import sideImage from '../../assets/images/img.svg';
-import help from '../../assets/images/help.svg';
-import { FC, ReactNode } from 'react';
+import sideImage from "../../assets/images/img.svg";
+import help from "../../assets/images/help.svg";
+import { FC, ReactNode } from "react";
 
-import AuthFooter from './AuthFooter';
+import AuthFooter from "./AuthFooter";
 interface IAuthWrapperProps {
   children: ReactNode;
 }
@@ -18,11 +18,11 @@ const AuthWrapper: FC<IAuthWrapperProps> = ({ children }) => {
         <div className="absolute right-5 top-5">
           <img src={help} alt="help" />
         </div>
-        <div className={'w-full flex flex-col justify-between'}>
+        <div className={"w-full flex flex-col justify-between"}>
           <div className="w-[300px] md:min-w-[424px] lg:min-w-[415px] mx-auto lg:pt-[40px] pt-[20px] ">
             {children}
           </div>
-          <div className={'mt-[22px]'}>
+          <div className={"mt-[22px]"}>
             <AuthFooter />
           </div>
         </div>

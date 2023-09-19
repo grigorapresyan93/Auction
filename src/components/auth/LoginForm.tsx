@@ -1,6 +1,6 @@
-import Input from '../shared/Input';
-import Button from '../shared/Button';
-import PhoneInput from '../shared/PhoneInput/PhoneInput';
+import Input from "../shared/Input";
+import Button from "../shared/Button";
+import PhoneInput from "../shared/PhoneInput/PhoneInput";
 
 const LoginForm = () => {
   const handlePhoneValueChange = (value: string) => {
@@ -19,11 +19,11 @@ const LoginForm = () => {
         {/* Phone Input */}
 
         <PhoneInput
-          label={'Հեռախոսահամար'}
-          className={'w-[300px] md:w-[415px] h-[52px] border border-[#667085] rounded-md mb-[24px]'}
-          type={'text'}
+          label={"Հեռախոսահամար"}
+          className={"w-[300px] md:w-[415px] h-[52px] border border-[#667085] rounded-md mb-[24px]"}
+          type={"text"}
           onChange={handlePhoneValueChange}
-          placeholder={''}
+          placeholder={""}
         />
 
         {/* Email Input */}
@@ -36,7 +36,7 @@ const LoginForm = () => {
         {/*/>*/}
 
         <div className="flex items-center justify-end">
-          <Button primary rounded className={'py-[12px] w-[191px] justify-center font-semibold'}>
+          <Button primary rounded className={"py-[12px] w-[191px] justify-center font-semibold"}>
             Ուղարկել կոդը
           </Button>
         </div>

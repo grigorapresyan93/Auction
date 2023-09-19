@@ -1,6 +1,6 @@
-import PhoneInput from 'react-phone-input-2';
-import './PhoneInput.css';
-import { FC } from 'react';
+import PhoneInput from "react-phone-input-2";
+import "./PhoneInput.css";
+import { FC } from "react";
 interface ICustomPhoneInputProps {
   label?: string;
   [key: string]: any;
@@ -13,7 +13,7 @@ const CustomPhoneInput: FC<ICustomPhoneInputProps> = ({ label, ...rest }) => {
           {label}
         </label>
       )}
-      <PhoneInput specialLabel={''} country={'am'} {...rest} />
+      <PhoneInput specialLabel={""} country={"am"} {...rest} />
     </>
   );
 };

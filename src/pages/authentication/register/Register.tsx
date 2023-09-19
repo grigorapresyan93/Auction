@@ -1,4 +1,4 @@
-import PasswordPart from './passwordPart/PasswordPart';
+import PasswordPart from "./passwordPart/PasswordPart";
 // import CodeVerification from './codeVerification/CodeVerification';
 // import RegisterWithEmailOrPhone from './registerWithEmailOrPhone/RegisterWithEmailOrPhone';
 function Register() {

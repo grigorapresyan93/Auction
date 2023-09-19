@@ -1,5 +1,5 @@
 .react-tel-input {
-  font-family: 'Mardoto', sans-serif;
+  font-family: "Mardoto", sans-serif;
   font-size: 15px;
   position: relative;
   width: 100%;
@@ -1016,7 +1016,7 @@
 }
 
 .react-tel-input .form-control.invalid-number + div:before {
-  content: 'Error';
+  content: "Error";
   display: none;
   color: #f44336;
   width: 27px;

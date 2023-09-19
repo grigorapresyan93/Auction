@@ -1,5 +1,5 @@
-import SmallLogo from '../../assets/images/logo_small.svg';
-import { FC, ReactNode } from 'react';
+import SmallLogo from "../../assets/images/logo_small.svg";
+import { FC, ReactNode } from "react";
 
 interface IFormTopLogoProps {
   children: ReactNode;
