@@ -7,11 +7,11 @@ import declined from "../../assets/images/declined.svg";
 import Input from "../shared/Input";
 import Button from "../shared/Button";
 import FormTopLogo from "./FormTopLogo";
+import PasswordInputEye from "../shared/PasswordInputEye";
 
 import usePasswordValidation from "../../hooks/usePasswordValidation";
 
 import { IPasswordValidationResult } from "../../interface/auth.interface";
-import PasswordInputEye from "../shared/PasswordInputEye";
 
 const INPUT_BASE_CLASSES = className(
   "border border-[#667085] w-[300px] md:w-[415px] h-[52px] rounded-[6px] px-[10px]"
@@ -80,6 +80,7 @@ const WritePassword = () => {
   });
   const [inputFields, setInputFields] = useState(INPUT_FIELDS);
   const [hasFalseValue, setHasFalseValue] = useState(false);
+
   const handlePasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setPasswordState({
@@ -98,8 +99,8 @@ const WritePassword = () => {
     .filter((item) => item !== undefined)
     .join(", ");
 
+
   const toggleInputEye = (type: string, updatedIndex: number) => {
-    console.log(type, updatedIndex);
     const toggledFields = inputFields.map((field, index) =>
       updatedIndex === index ? { ...field, props: { ...field.props, type: type } } : field
     );
