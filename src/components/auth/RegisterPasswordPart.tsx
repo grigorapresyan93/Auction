@@ -14,7 +14,13 @@ import constants from "./constants";
 
 import { IPasswordValidationResult } from "../../interface/auth.interface";
 
-const { INPUT_FIELDS, PASS_REQUIREMENTS, ERROR_TEXT_BASE_CLASSES } = constants;
+const {
+  INPUT_FIELDS,
+  ENABLED_BUTTON,
+  DISABLED_BUTTON,
+  PASS_REQUIREMENTS,
+  ERROR_TEXT_BASE_CLASSES
+} = constants;
 
 const WritePassword = () => {
   const [passwordState, setPasswordState] = useState({
@@ -32,7 +38,22 @@ const WritePassword = () => {
     });
   };
 
-  const validationObject = usePasswordValidation(passwordState.password);
+  const validationObject = usePasswordValidation(
+    passwordState.password,
+    passwordState.repeat_password
+  );
+
+  const { isTheSame, ...rest } = validationObject;
+  const allPropertiesAreTrue = Object.values(validationObject).every((value) => value === true);
+
+  useEffect(() => {
+    if (!passwordState.password.length) {
+      setHasFalseValue(false);
+      return;
+    }
+
+    setHasFalseValue(Object.values(rest).some((value) => value === false));
+  }, [validationObject]);
 
   const renderedItems = PASS_REQUIREMENTS.map(({ req, text }) => {
     if (!validationObject[req as keyof IPasswordValidationResult]) {
@@ -49,11 +70,6 @@ const WritePassword = () => {
     setInputFields(toggledFields);
   };
 
-  useEffect(() => {
-    if (!passwordState.password.length) return;
-    setHasFalseValue(Object.values(validationObject).some((value) => value === false));
-  }, [validationObject]);
-
   return (
     <>
       <FormTopLogo>Գրանցում</FormTopLogo>
@@ -61,13 +77,28 @@ const WritePassword = () => {
         {inputFields.map((field, index) => (
           <div key={field.key} className={"mb-[24px]"}>
             <Input
-              error={hasFalseValue && field.props.name === "password"}
+              error={
+                (hasFalseValue && field.props.name === "password") ||
+                (field.props.name == "repeat_password" &&
+                  !isTheSame &&
+                  passwordState.repeat_password.length &&
+                  passwordState.password.length)
+              }
               {...field.props}
               onChange={handlePasswordInputChange}
               suffix={<PasswordInputEye onToggle={(type) => toggleInputEye(type, index)} />}
             />
-            {hasFalseValue && field.props.name === "password" && (
+            {hasFalseValue && field.props.name === "password" ? (
               <div className={ERROR_TEXT_BASE_CLASSES}>{renderedItems}</div>
+            ) : field.props.name == "repeat_password" &&
+              !isTheSame &&
+              passwordState.repeat_password.length &&
+              passwordState.password.length ? (
+              <div className={ERROR_TEXT_BASE_CLASSES}>
+                Անհրաժեշտ է նույնությամբ կրկնել գաղտնաբառը
+              </div>
+            ) : (
+              ""
             )}
           </div>
         ))}
@@ -77,10 +108,7 @@ const WritePassword = () => {
             rounded
             disabled={true}
             onClick={(e) => e.preventDefault()}
-            className={
-              "bg-[#CCCCCD] w-[168px] text-[#8A898C] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
-            }
-          >
+            className={allPropertiesAreTrue ? ENABLED_BUTTON : DISABLED_BUTTON}>
             Հաստատել
           </Button>
         </div>

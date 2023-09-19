@@ -27,8 +27,16 @@ const INPUT_BASE_CLASSES = className(
 const VALIDATION_TEXT_CLASS = className(
   "font-mardoto font-[400] text-[16px] text-[#101B28] opacity-[80%] "
 );
+const DISABLED_BUTTON = className(
+  "bg-[#CCCCCD] w-[168px] text-[#8A898C] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
+);
+const ENABLED_BUTTON = className(
+  "bg-[#1F598E] w-[168px] text-[#FFF] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
+);
 
 export default {
+  ENABLED_BUTTON,
+  DISABLED_BUTTON,
   TEXT_BASE_CLASSES,
   INPUT_BASE_CLASSES,
   RESEND_BUTTON_CLASSES,
