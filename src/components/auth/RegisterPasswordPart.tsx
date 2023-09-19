@@ -90,7 +90,10 @@ const WritePassword = () => {
   const validationObject = usePasswordValidation(passwordState.password);
 
   useEffect(() => {
-    if (!passwordState.password.length) return;
+    if (!passwordState.password.length) {
+      setHasFalseValue(false);
+      return;
+    }
     setHasFalseValue(Object.values(validationObject).some((value) => value === false));
   }, [validationObject]);
 
