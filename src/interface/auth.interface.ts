@@ -1,7 +1,12 @@
 export interface IPasswordValidationResult {
+  hasNumber: boolean;
   isValidLength: boolean;
   hasUpperCaseLetter: boolean;
   hasLowerCaseLetter: boolean;
-  hasNumber: boolean;
+}
+export interface IDebauncedResult {
+  debaunced: boolean;
   isTheSame: boolean;
+  repDebaunced: boolean;
+  validationResult: IPasswordValidationResult;
 }
