@@ -25,6 +25,36 @@ const INPUT_FIELDS = [
   }
 ];
 
+const INPUT_FIELDS_FOR_REGISTER = [
+  {
+    key: "user_name",
+    props: {
+      label: "Անուն Ազգանուն",
+      className: INPUT_BASE_CLASSES,
+      type: "text",
+      name: "user_name"
+    }
+  },
+  {
+    key: "phone_number",
+    props: {
+      label: "Հեռախոսահամար",
+      className: INPUT_BASE_CLASSES,
+      type: "text",
+      name: "phone_number"
+    }
+  },
+  {
+    key: "email_address",
+    props: {
+      label: "Էլ. հասցե",
+      className: INPUT_BASE_CLASSES,
+      type: "mail",
+      name: "email_address"
+    }
+  }
+];
+
 const PASS_REQUIREMENTS = [
   {
     key: 1,
@@ -56,5 +86,6 @@ const PASS_REQUIREMENTS = [
 export default {
   INPUT_FIELDS,
   PASS_REQUIREMENTS,
+  INPUT_FIELDS_FOR_REGISTER,
   RESEND_CODE_TIMER_DURATION
 };

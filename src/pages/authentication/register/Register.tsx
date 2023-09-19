@@ -1,11 +1,11 @@
 import PasswordPart from "./PasswordPart";
-// import CodeVerification from './codeVerification/CodeVerification';
-// import RegisterWithEmailOrPhone from './registerWithEmailOrPhone/RegisterWithEmailOrPhone';
+// import CodeVerification from './CodeVerification';
+// import RegisterWithEmailOrPhone from "./RegisterWithEmailOrPhone";
 
 function Register() {
   return (
     <>
-      {/*<RegisterWithEmailOrPhone />*/}
+      {/* <RegisterWithEmailOrPhone /> */}
       {/*<CodeVerification />*/}
       <PasswordPart />
     </>
