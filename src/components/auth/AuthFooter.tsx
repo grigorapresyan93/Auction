@@ -1,8 +1,6 @@
-import className from "classnames";
+import constants from "./constants";
 
-const AUTH_FOOTER_LIST_CLASSES = className(
-  "font-mardoto text-[10px] mx-[8px] font-normal leading-[12px]"
-);
+const { AUTH_FOOTER_LIST_CLASSES } = constants;
 
 const AuthFooter = () => {
   return (

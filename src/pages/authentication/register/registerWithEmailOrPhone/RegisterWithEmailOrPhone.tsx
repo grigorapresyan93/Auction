@@ -1,5 +1,5 @@
 import React from "react";
-import FormTopLogo from "../../../../components/auth/FormTopLogo";
+import FormTopLogo from "../../../../components/auth/AuthTopLogo";
 import LoginForm from "../../../../components/auth/LoginForm";
 import MediaRegistration from "../../../../components/shared/MediaRegistration";
 

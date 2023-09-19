@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import classNames from "classnames";
+import constants from "./constants";
 
 import Button from "../../components/shared/Button";
-import FormTopLogo from "../../components/auth/FormTopLogo";
+import FormTopLogo from "../../components/auth/AuthTopLogo";
 import VerificationInput from "../../components/auth/VerificationInput";
 
-const RESEND_CODE_TIMER_DURATION = 60;
-
-const TEXT_BASE_CLASSES = classNames(
-  "text-[#101B28CC] font-mardoto text-center text-[14px] font-normal"
-);
-const RESEND_BUTTON_CLASSES = classNames(
-  "w-[300px] md:w-[343px] py-[12px] text-[#144272] mx-auto mt-[60px] flex justify-center hover:text-[#fff] text-center rounded-[1000px] bg-[#F0F3FF] hover:bg-[#F4B405] text-[16px] font-semibold leading-[20px] shadow-[0px_1px_3px_1px_rgba(0, 0, 0, 0.15)] hover:shadow-[0px_1px_3px_1px_rgba(244,180,5, 0.15)]"
-);
+const { TEXT_BASE_CLASSES, RESEND_BUTTON_CLASSES, RESEND_CODE_TIMER_DURATION } = constants;
 
 const CodeVerification = () => {
   const [showTimer, setShowTimer] = useState<boolean>(true);

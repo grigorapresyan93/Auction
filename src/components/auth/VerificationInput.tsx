@@ -1,14 +1,6 @@
-import className from "classnames";
 import { FC, useRef, ClipboardEvent, KeyboardEvent, FormEvent, RefObject } from "react";
+import constants from "./constants";
 
-// import { ClipboardEvent } from '../../interface/clipboard.interface';
-const VERIFICATION_INPUT_BASE_CLASSES = className(
-  "w-[45px] md:min-w-[60px] h-[45px] md:min-h-[60px] outline-none text-center font-mardoto text-[20px] border rounded-lg border-[#667085] bg-[#fff]"
-);
-
-const ERROR_TEXT_BASE_CLASSES = className(
-  "text-[10px] mt-[8px] font-mardoto text-[#F34635] font-normal"
-);
 interface IVerificationInputProps {
   error: string;
   // eslint-disable-next-line no-unused-vars
@@ -17,6 +9,8 @@ interface IVerificationInputProps {
 
 // eslint-disable-next-line no-unused-vars
 type KeyHandler = (e: KeyboardEvent<HTMLInputElement>, index: number) => void;
+
+const { ERROR_TEXT_BASE_CLASSES, VERIFICATION_INPUT_BASE_CLASSES } = constants;
 // TODO => check typeof inputRefs
 const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck }) => {
   const inputs: (HTMLInputElement | null)[] = Array.from({ length: 6 });
