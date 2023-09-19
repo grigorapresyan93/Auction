@@ -9,20 +9,14 @@ const usePasswordValidation = (
   const [hasUpperCaseLetter, setHasUpperCaseLetter] = useState(false);
   const [hasLowerCaseLetter, setHasLowerCaseLetter] = useState(false);
   const [hasNumber, setHasNumber] = useState(false);
-  const [isTheSame, setIsTheSame] = useState(true);
+  const [isTheSame, setIsTheSame] = useState(false);
 
   useEffect(() => {
     const validatePassword = () => {
-      const isLengthValid = password.length >= 8;
-      const hasUpperCase = /[A-Z]/.test(password);
-      const hasLowerCase = /[a-z]/.test(password);
-      const hasNum = /[0-9]/.test(password);
-
-      setIsValidLength(isLengthValid);
-      setHasUpperCaseLetter(hasUpperCase);
-      setHasLowerCaseLetter(hasLowerCase);
-      setHasNumber(hasNum);
-      setIsTheSame(password === resPassword);
+      setIsValidLength(password.length >= 8);
+      setHasUpperCaseLetter(/[A-Z]/.test(password));
+      setHasLowerCaseLetter(/[a-z]/.test(password));
+      setHasNumber(/[0-9]/.test(password));
     };
 
     const debounce = (func: () => void, delay: number) => {
@@ -39,6 +33,26 @@ const usePasswordValidation = (
 
     return () => clearTimeout(delayedValidation as unknown as any);
   }, [password]);
+
+  useEffect(() => {
+    const validateResPassword = () => {
+      setIsTheSame(password == resPassword);
+    };
+
+    const debounce = (func: () => void, delay: number) => {
+      let timeout: any;
+      return function (this: any, ...args: any) {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(this, args), delay);
+      };
+    };
+
+    const delayedValidation = debounce(validateResPassword, 1000);
+
+    delayedValidation();
+
+    return () => clearTimeout(delayedValidation as unknown as any);
+  }, [resPassword]);
 
   return {
     isValidLength,

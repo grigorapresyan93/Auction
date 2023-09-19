@@ -23,6 +23,12 @@ const ERROR_TEXT_BASE_CLASSES = className(
   "text-[10px] mt-[8px] font-mardoto text-[#F34635] font-normal"
 );
 
+const DISABLED_BUTTON = className(
+  "bg-[#CCCCCD] w-[168px] text-[#8A898C] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
+);
+const ENABLED_BUTTON = className(
+  "bg-[#1F598E] w-[168px] text-[#FFF] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
+);
 const INPUT_FIELDS = [
   {
     key: "password",
@@ -93,11 +99,14 @@ const WritePassword = () => {
   );
 
   const { isTheSame, ...rest } = validationObject;
+  const allPropertiesAreTrue = Object.values(validationObject).every((value) => value === true);
+
   useEffect(() => {
     if (!passwordState.password.length) {
       setHasFalseValue(false);
       return;
     }
+
     setHasFalseValue(Object.values(rest).some((value) => value === false));
   }, [validationObject]);
 
@@ -115,12 +124,27 @@ const WritePassword = () => {
         {INPUT_FIELDS.map((field) => (
           <div key={field.key} className={"mb-[24px]"}>
             <Input
-              error={hasFalseValue && field.props.name === "password"}
+              error={
+                (hasFalseValue && field.props.name === "password") ||
+                (field.props.name == "repeat_password" &&
+                  !isTheSame &&
+                  passwordState.repeat_password.length &&
+                  passwordState.password.length)
+              }
               {...field.props}
               onChange={handlePasswordInputChange}
             />
-            {hasFalseValue && field.props.name === "password" && (
+            {hasFalseValue && field.props.name === "password" ? (
               <div className={ERROR_TEXT_BASE_CLASSES}>{renderedItems}</div>
+            ) : field.props.name == "repeat_password" &&
+              !isTheSame &&
+              passwordState.repeat_password.length &&
+              passwordState.password.length ? (
+              <div className={ERROR_TEXT_BASE_CLASSES}>
+                Անհրաժեշտ է նույնությամբ կրկնել գաղտնաբառը
+              </div>
+            ) : (
+              ""
             )}
           </div>
         ))}
@@ -130,9 +154,7 @@ const WritePassword = () => {
             rounded
             disabled={true}
             onClick={(e) => e.preventDefault()}
-            className={
-              "bg-[#CCCCCD] w-[168px] text-[#8A898C] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center"
-            }>
+            className={allPropertiesAreTrue ? ENABLED_BUTTON : DISABLED_BUTTON}>
             Հաստատել
           </Button>
         </div>

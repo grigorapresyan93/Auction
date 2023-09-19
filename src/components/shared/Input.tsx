@@ -5,7 +5,7 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string;
   suffix?: ReactNode | string;
   label?: string;
-  error?: boolean;
+  error?: boolean | number;
 }
 
 const Input: FC<IInputProps> = ({ prefix, suffix, label, error, ...rest }) => {
