@@ -1,5 +1,5 @@
 import className from "classnames";
-import { FC, ReactNode, InputHTMLAttributes } from "react";
+import { FC, ReactNode, InputHTMLAttributes, Fragment } from "react";
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   prefix?: string;
@@ -25,14 +25,14 @@ const Input: FC<IInputProps> = ({ prefix, suffix, label, error, ...rest }) => {
         </label>
       )}
       {prefix ? (
-        <div>
-          {prefix}
+        <div className={"flex items-center relative"}>
+          <div className={"absolute left-[16px]"}>{prefix}</div>
           <input {...rest} className={classes} />
         </div>
       ) : suffix ? (
-        <div className="flex items-center ">
+        <div className="flex items-center relative">
           <input {...rest} className={classes} />
-          {suffix}
+          <div className={"absolute right-[16px]"}>{suffix}</div>
         </div>
       ) : (
         <input {...rest} className={classes} />
