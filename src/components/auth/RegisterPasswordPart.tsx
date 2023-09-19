@@ -125,7 +125,8 @@ const WritePassword = () => {
             onClick={(e) => e.preventDefault()}
             className={
               'bg-[#CCCCCD] w-[168px] text-[#8A898C] font-mardoto text-[16px] leading-[20px] py-[12px] font-semibold justify-center'
-            }>
+            }
+          >
             Հաստատել
           </Button>
         </div>

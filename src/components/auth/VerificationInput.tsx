@@ -92,7 +92,8 @@ const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck
   return (
     <form>
       <div
-        className={'w-[300px] md:min-w-[424px] lg:min-w-[415px] flex items-center justify-between'}>
+        className={'w-[300px] md:min-w-[424px] lg:min-w-[415px] flex items-center justify-between'}
+      >
         {inputs.map((_, index) => (
           <input
             key={index}
