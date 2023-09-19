@@ -11,6 +11,7 @@ import FormTopLogo from "./FormTopLogo";
 import usePasswordValidation from "../../hooks/usePasswordValidation";
 
 import { IPasswordValidationResult } from "../../interface/auth.interface";
+import PasswordInputEye from "../shared/PasswordInputEye";
 
 const INPUT_BASE_CLASSES = className(
   "border border-[#667085] w-[300px] md:w-[415px] h-[52px] rounded-[6px] px-[10px]"
@@ -77,8 +78,8 @@ const WritePassword = () => {
     password: "",
     repeat_password: ""
   });
+  const [inputFields, setInputFields] = useState(INPUT_FIELDS);
   const [hasFalseValue, setHasFalseValue] = useState(false);
-
   const handlePasswordInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setPasswordState({
@@ -89,11 +90,6 @@ const WritePassword = () => {
 
   const validationObject = usePasswordValidation(passwordState.password);
 
-  useEffect(() => {
-    if (!passwordState.password.length) return;
-    setHasFalseValue(Object.values(validationObject).some((value) => value === false));
-  }, [validationObject]);
-
   const renderedItems = PASS_REQUIREMENTS.map(({ req, text }) => {
     if (!validationObject[req as keyof IPasswordValidationResult]) {
       return text;
@@ -101,16 +97,31 @@ const WritePassword = () => {
   })
     .filter((item) => item !== undefined)
     .join(", ");
+
+  const toggleInputEye = (type: string, updatedIndex: number) => {
+    console.log(type, updatedIndex);
+    const toggledFields = inputFields.map((field, index) =>
+      updatedIndex === index ? { ...field, props: { ...field.props, type: type } } : field
+    );
+    setInputFields(toggledFields);
+  };
+
+  useEffect(() => {
+    if (!passwordState.password.length) return;
+    setHasFalseValue(Object.values(validationObject).some((value) => value === false));
+  }, [validationObject]);
+
   return (
     <>
       <FormTopLogo>Գրանցում</FormTopLogo>
       <form action="#" className={"mt-[48px]"}>
-        {INPUT_FIELDS.map((field) => (
+        {inputFields.map((field, index) => (
           <div key={field.key} className={"mb-[24px]"}>
             <Input
               error={hasFalseValue && field.props.name === "password"}
               {...field.props}
               onChange={handlePasswordInputChange}
+              suffix={<PasswordInputEye onToggle={(type) => toggleInputEye(type, index)} />}
             />
             {hasFalseValue && field.props.name === "password" && (
               <div className={ERROR_TEXT_BASE_CLASSES}>{renderedItems}</div>
