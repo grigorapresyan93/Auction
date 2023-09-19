@@ -3,4 +3,5 @@ export interface IPasswordValidationResult {
   hasUpperCaseLetter: boolean;
   hasLowerCaseLetter: boolean;
   hasNumber: boolean;
+  isTheSame: boolean;
 }

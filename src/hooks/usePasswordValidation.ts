@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { IPasswordValidationResult } from "../interface/auth.interface";
 
-const usePasswordValidation = (password: string): IPasswordValidationResult => {
+const usePasswordValidation = (
+  password: string,
+  resPassword: string
+): IPasswordValidationResult => {
   const [isValidLength, setIsValidLength] = useState(false);
   const [hasUpperCaseLetter, setHasUpperCaseLetter] = useState(false);
   const [hasLowerCaseLetter, setHasLowerCaseLetter] = useState(false);
   const [hasNumber, setHasNumber] = useState(false);
+  const [isTheSame, setIsTheSame] = useState(true);
 
   useEffect(() => {
     const validatePassword = () => {
@@ -18,6 +22,7 @@ const usePasswordValidation = (password: string): IPasswordValidationResult => {
       setHasUpperCaseLetter(hasUpperCase);
       setHasLowerCaseLetter(hasLowerCase);
       setHasNumber(hasNum);
+      setIsTheSame(password === resPassword);
     };
 
     const debounce = (func: () => void, delay: number) => {
@@ -39,7 +44,8 @@ const usePasswordValidation = (password: string): IPasswordValidationResult => {
     isValidLength,
     hasLowerCaseLetter,
     hasUpperCaseLetter,
-    hasNumber
+    hasNumber,
+    isTheSame
   };
 };
 
