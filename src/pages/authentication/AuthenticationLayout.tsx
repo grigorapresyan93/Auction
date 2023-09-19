@@ -1,13 +1,11 @@
 import { Outlet } from 'react-router-dom';
+import AuthWrapper from '../../components/auth/AuthWrapper';
 
 function AuthenticationLayout() {
   return (
-    <>
-      AuthenticationLayout
-      <main>
-        <Outlet />
-      </main>
-    </>
+    <AuthWrapper>
+      <Outlet />
+    </AuthWrapper>
   );
 }
 

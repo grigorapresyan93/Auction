@@ -10,8 +10,11 @@ const ERROR_TEXT_BASE_CLASSES = className(
 );
 interface IVerificationInputProps {
   error: string;
+  // eslint-disable-next-line no-unused-vars
   handleCodeCheck: (value: string) => void;
 }
+
+// eslint-disable-next-line no-unused-vars
 type KeyHandler = (e: KeyboardEvent<HTMLInputElement>, index: number) => void;
 
 const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck }) => {

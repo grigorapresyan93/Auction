@@ -1,5 +1,14 @@
+import PasswordPart from './passwordPart/PasswordPart';
+// import CodeVerification from './codeVerification/CodeVerification';
+// import RegisterWithEmailOrPhone from './registerWithEmailOrPhone/RegisterWithEmailOrPhone';
 function Register() {
-  return <div>Register</div>;
+  return (
+    <>
+      {/*<RegisterWithEmailOrPhone />*/}
+      {/*<CodeVerification />*/}
+      <PasswordPart />
+    </>
+  );
 }
 
 export default Register;

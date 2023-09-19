@@ -1,13 +1,7 @@
 import { useState, useEffect } from 'react';
+import { IPasswordValidationResult } from '../interface/auth.interface';
 
-interface PasswordValidationResult {
-  isValidLength: boolean;
-  hasUpperCaseLetter: boolean;
-  hasLowerCaseLetter: boolean;
-  hasNumber: boolean;
-}
-
-const usePasswordValidation = (password: string): PasswordValidationResult => {
+const usePasswordValidation = (password: string): IPasswordValidationResult => {
   const [isValidLength, setIsValidLength] = useState(false);
   const [hasUpperCaseLetter, setHasUpperCaseLetter] = useState(false);
   const [hasLowerCaseLetter, setHasLowerCaseLetter] = useState(false);

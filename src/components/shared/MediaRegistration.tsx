@@ -2,16 +2,16 @@ import Button from './Button';
 
 // icons
 import EmailIcon from '../../assets/images/email_icon.svg';
-import PhoneIcon from '../../assets/images/phone_icon.svg';
+// import PhoneIcon from '../../assets/images/phone_icon.svg';
 import GmailIcon from '../../assets/images/gmail.svg';
 import FbIcon from '../../assets/images/fb_icon.svg';
 
 const MEDIA_REGISTRATION_BUTTONS = [
-  {
-    key: 'phone',
-    label: 'Հեռախոսահամարով',
-    icon: PhoneIcon
-  },
+  // {
+  //   key: 'phone',
+  //   label: 'Հեռախոսահամարով',
+  //   icon: PhoneIcon
+  // },
   {
     key: 'email',
     label: 'Էլ. հասցեով',
