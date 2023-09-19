@@ -1,4 +1,4 @@
-import RegisterPasswordPart from "../../../../components/auth/RegisterPasswordPart";
+import RegisterPasswordPart from "../../../components/auth/RegisterPasswordPart";
 
 const PasswordPart = () => {
   return <RegisterPasswordPart />;

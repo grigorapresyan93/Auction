@@ -1,5 +1,5 @@
 import React from "react";
-import AuthCodeVerification from "../../../../components/auth/AuthCodeVerification";
+import AuthCodeVerification from "../../../components/auth/AuthCodeVerification";
 
 const CodeVerification = () => {
   return <AuthCodeVerification />;
