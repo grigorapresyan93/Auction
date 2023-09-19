@@ -17,7 +17,7 @@ interface IVerificationInputProps {
 
 // eslint-disable-next-line no-unused-vars
 type KeyHandler = (e: KeyboardEvent<HTMLInputElement>, index: number) => void;
-
+// TODO => check typeof inputRefs
 const VerificationInput: FC<IVerificationInputProps> = ({ error, handleCodeCheck }) => {
   const inputs: (HTMLInputElement | null)[] = Array.from({ length: 6 });
   const inputRefs: any = inputs.map(() => useRef(null));

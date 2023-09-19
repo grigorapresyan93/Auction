@@ -19,7 +19,7 @@ const usePasswordValidation = (password: string): IPasswordValidationResult => {
       setHasLowerCaseLetter(hasLowerCase);
       setHasNumber(hasNum);
     };
-
+    // TODO => check any types
     const debounce = (func: () => void, delay: number) => {
       let timeout: any;
       return function (this: any, ...args: any) {
