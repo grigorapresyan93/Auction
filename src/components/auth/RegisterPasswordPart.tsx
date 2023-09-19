@@ -108,11 +108,11 @@ const WritePassword = () => {
         {INPUT_FIELDS.map((field) => (
           <div key={field.key} className={'mb-[24px]'}>
             <Input
-              error={hasFalseValue && field.props.name == 'password'}
+              error={hasFalseValue && field.props.name === 'password'}
               {...field.props}
               onChange={handlePasswordInputChange}
             />
-            {hasFalseValue && field.props.name == 'password' && (
+            {hasFalseValue && field.props.name === 'password' && (
               <div className={ERROR_TEXT_BASE_CLASSES}>{renderedItems}</div>
             )}
           </div>
