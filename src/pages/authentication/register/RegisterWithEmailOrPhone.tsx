@@ -16,8 +16,7 @@ const RegisterWithEmailOrPhone = () => {
         onClick={() => {
           authCtx.onNextStep({ name: "test" });
           console.log(authCtx.registrationData);
-        }}
-      >
+        }}>
         test
       </button>
     </>

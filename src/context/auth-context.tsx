@@ -4,6 +4,7 @@ const AuthContext = React.createContext({
   isLoggedIn: false,
   onLogout: () => {},
   onLogin: () => {},
+  // eslint-disable-next-line no-unused-vars
   onNextStep: (data: any) => {},
   currentStep: 1,
   registrationData: {}
@@ -41,8 +42,7 @@ export const AuthContextProvider = (props: any) => {
         onLogout: logoutHandler,
         onNextStep: nextStepHandler,
         currentStep: currentStep
-      }}
-    >
+      }}>
       {props.children}
     </AuthContext.Provider>
   );

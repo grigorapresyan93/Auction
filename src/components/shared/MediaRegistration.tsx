@@ -46,8 +46,7 @@ const MediaRegistration = () => {
             key={item.key}
             id="btn"
             rounded
-            className="mx-auto my-[8px] sm:mx-[15px] sm:px-0 sm:py-0 md:px-3 md:py-1.5 md:mx-0 h-[48px] sm:border-0 md:border md:border-[#14427299] md:bg-[#EBF3FB] md:w-[340px] md:pl-[40px]"
-          >
+            className="mx-auto my-[8px] sm:mx-[15px] sm:px-0 sm:py-0 md:px-3 md:py-1.5 md:mx-0 h-[48px] sm:border-0 md:border md:border-[#14427299] md:bg-[#EBF3FB] md:w-[340px] md:pl-[40px]">
             <div className="flex space-x-4 items-center">
               <img className={"w-[34px] h-[34px]"} src={item.icon} alt="" />
               <p className="sm:hidden md:block font-mardoto font-normal text-[14px] text-[#101B28]">
