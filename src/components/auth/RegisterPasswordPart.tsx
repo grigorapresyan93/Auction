@@ -99,8 +99,7 @@ const WritePassword = () => {
             rounded
             disabled={true}
             onClick={(e) => e.preventDefault()}
-            className={isTheSame && allPropertiesAreTrue ? ENABLED_BUTTON : DISABLED_BUTTON}
-          >
+            className={isTheSame && allPropertiesAreTrue ? ENABLED_BUTTON : DISABLED_BUTTON}>
             Հաստատել
           </Button>
         </div>
