@@ -1,5 +1,7 @@
 import { ChangeEvent, FC, useState } from "react";
 
+import classNames from "classnames";
+
 import constants from "./constants";
 
 import Input from "../shared/Input";
@@ -9,7 +11,6 @@ import PhoneInput from "../shared/PhoneInput/PhoneInput";
 import PasswordInputEye from "../shared/PasswordInputEye";
 
 import useLocationEnhancer from "../../hooks/useLocationEnhancer";
-import classNames from "classnames";
 
 const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN } = constants;
 
@@ -87,9 +88,13 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
 
         <div className={` ${BUTTON_CLASS} flex items-center `}>
           {lastPart == "sign-in" && (
-            <p className=" font-mardoto text-[12px] text-[#1376DD]">Մոռացե՞լ եք գաղտնաբառը</p>
+            <p className=" font-mardoto text-[12px] text-[#1376DD] cursor-pointer">
+              Մոռացե՞լ եք գաղտնաբառը
+            </p>
           )}
           <Button
+            hover
+            active
             primary
             rounded
             className={"py-[12px] w-[191px] justify-center font-semibold"}

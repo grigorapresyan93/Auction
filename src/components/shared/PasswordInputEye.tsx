@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 
-import visibility_off_eye from "../../assets/images/eye-visibility_off.svg";
 import visible_eye from "../../assets/images/eye.svg";
+import visibility_off_eye from "../../assets/images/eye-visibility_off.svg";
 
 interface InputPasswordEyeProps {
   // eslint-disable-next-line no-unused-vars
@@ -18,10 +18,10 @@ const InputPasswordEye: FC<InputPasswordEyeProps> = ({ onToggle }) => {
 
   return (
     <img
-      className={"cursor-pointer w-[24px] h-[24px]"}
-      src={hiddenEye ? visibility_off_eye : visible_eye}
-      alt={hiddenEye ? "visibility_off_eye" : "eye"}
       onClick={handleClick}
+      className={"cursor-pointer w-[24px] h-[24px]"}
+      alt={hiddenEye ? "visibility_off_eye" : "eye"}
+      src={hiddenEye ? visibility_off_eye : visible_eye}
     />
   );
 };

@@ -1,10 +1,9 @@
 import { useContext, JSX } from "react";
 
+import AuthContext from "../../../context/auth-context";
 import RegisterPasswordPart from "../../../components/auth/RegisterPasswordPart";
 import AuthCodeVerification from "../../../components/auth/AuthCodeVerification";
 import RegisterWithEmailOrPhone from "../../../components/auth/RegisterWithEmailOrPhone";
-
-import AuthContext from "../../../context/auth-context";
 
 interface ISteps {
   [key: number]: JSX.Element;

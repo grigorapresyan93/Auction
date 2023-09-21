@@ -45,12 +45,12 @@ export const AuthContextProvider = (props: any) => {
     <AuthContext.Provider
       value={{
         isLoggedIn: isLoggedIn,
-        registrationData: registrationData,
         onLogin: loginHandler,
         onLogout: logoutHandler,
+        currentStep: currentStep,
         onNextStep: nextStepHandler,
-        onRegistrationDataChange: handleRegistrationData,
-        currentStep: currentStep
+        registrationData: registrationData,
+        onRegistrationDataChange: handleRegistrationData
       }}>
       {props.children}
     </AuthContext.Provider>

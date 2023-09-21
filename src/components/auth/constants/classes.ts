@@ -6,7 +6,7 @@ const TEXT_BASE_CLASSES = classNames(
 );
 
 const RESEND_BUTTON_CLASSES = classNames(
-  "w-[300px] md:w-[343px] py-[12px] text-[#144272] mx-auto mt-[60px] flex justify-center hover:text-[#fff] text-center rounded-[1000px] bg-[#F0F3FF] hover:bg-[#F4B405] text-[16px] font-semibold leading-[20px] shadow-[0px_1px_3px_1px_rgba(0, 0, 0, 0.15)] hover:shadow-[0px_1px_3px_1px_rgba(244,180,5, 0.15)]"
+  "w-[300px] md:w-[343px] py-[12px] text-[#144272] mx-auto mt-[60px] flex justify-center text-center rounded-[1000px] bg-[#F0F3FF] text-[16px] font-semibold leading-[20px] shadow-[0px_1px_3px_1px_rgba(0, 0, 0, 0.15)] hover:shadow-[0px_1px_3px_1px_rgba(244,180,5, 0.15)]"
 );
 
 const AUTH_FOOTER_LIST_CLASSES = classNames(

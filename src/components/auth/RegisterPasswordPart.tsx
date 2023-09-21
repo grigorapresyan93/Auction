@@ -15,8 +15,8 @@ import { IDebauncedResult, IPasswordValidationResult } from "../../interface/aut
 
 const {
   INPUT_FIELDS,
-  ENABLED_BUTTON,
-  DISABLED_BUTTON,
+  // ENABLED_BUTTON,
+  // DISABLED_BUTTON,
   PASS_REQUIREMENTS,
   ERROR_TEXT_BASE_CLASSES
 } = constants;
@@ -96,10 +96,13 @@ const WritePassword = () => {
 
         <div className={"flex justify-end mt-[40px] mb-[60px]"}>
           <Button
+            hover
+            active
             rounded
-            disabled={true}
+            primary={isTheSame && allPropertiesAreTrue}
+            disabled={!isTheSame || !allPropertiesAreTrue}
             onClick={(e) => e.preventDefault()}
-            className={isTheSame && allPropertiesAreTrue ? ENABLED_BUTTON : DISABLED_BUTTON}>
+            className="px-10 py-3">
             Հաստատել
           </Button>
         </div>

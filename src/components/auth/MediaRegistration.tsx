@@ -61,8 +61,9 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
 
   const handleMediaButtonsClick = () => {};
 
-  const LINE_WIDTH = classNames(" w-[70px] md:w-[140px]", {
-    "w-[70px] md:w-[129px]": lastPart === "sign-in"
+  const LINE_WIDTH = classNames({
+    "w-[70px] md:w-[129px]": lastPart === "sign-in",
+    "w-[70px] md:w-[140px]": lastPart === "register"
   });
 
   return (
@@ -71,7 +72,7 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
         <div className="flex items-center justify-center space-x-2">
           <div className={`${LINE_WIDTH} h-[1px] bg-[#8080804D]`}></div>
           <p className="font-mardoto text-[14px]  ">{suggestionText}</p>
-          <div className={`${LINE_WIDTH}  h-[1px] bg-[#8080804D]`}></div>
+          <div className={`${LINE_WIDTH} h-[1px] bg-[#8080804D]`}></div>
         </div>
       </div>
 
@@ -89,8 +90,10 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
       </div>
 
       <div className={"font-mardoto text-[14px] text-[#101B28CC] mt-[32px] text-center"}>
-        Արդեն ունե ՞ք գրանցված հաշիվ․
-        <span className={"text-[#1376DD] font-bold cursor-pointer"}>Մուտք գործել</span>
+        {lastPart == "register" ? "Արդեն ունե ՞ք գրանցված հաշիվ․" : "Դեռ գրանցվա՞ծ չեք․"}
+        <span className={"text-[#1376DD] font-bold cursor-pointer"}>
+          {lastPart == "register" ? "Մուտք գործել" : "Գրանցվել"}
+        </span>
       </div>
     </>
   );

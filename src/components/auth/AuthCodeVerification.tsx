@@ -1,11 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import constants from "./constants";
 
 import Button from "../../components/shared/Button";
+import authContext from "../../context/auth-context";
 import FormTopLogo from "../../components/auth/AuthTopLogo";
 import VerificationInput from "../../components/auth/VerificationInput";
-import authContext from "../../context/auth-context";
 
 const { TEXT_BASE_CLASSES, RESEND_BUTTON_CLASSES, RESEND_CODE_TIMER_DURATION } = constants;
 
@@ -58,7 +58,7 @@ const CodeVerification = () => {
           </div>
         </div>
       ) : (
-        <Button className={RESEND_BUTTON_CLASSES} onClick={handleResendClick}>
+        <Button hover active className={RESEND_BUTTON_CLASSES} onClick={handleResendClick}>
           Վերաուղարկել հաստատման կոդը
         </Button>
       )}

@@ -2,47 +2,35 @@ import className from "classnames";
 import { FC, ReactNode, ButtonHTMLAttributes } from "react";
 
 interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactNode;
+  hover?: boolean;
+  active?: boolean;
   primary?: boolean;
-  secondary?: boolean;
-  success?: boolean;
-  warning?: boolean;
-  danger?: boolean;
   outline?: boolean;
   rounded?: boolean;
-  loading?: boolean;
+  children?: ReactNode;
 }
 
 const Button: FC<IButtonProps> = ({
-  children,
+  hover,
+  active,
   primary,
-  secondary,
-  success,
-  warning,
-  danger,
   outline,
   rounded,
-  loading,
+  children,
+  disabled,
   ...rest
 }) => {
   const classes = className(rest.className, "flex items-center px-3 py-1.5 border font-mardoto", {
-    "opacity-80": loading,
-    "border-[#1F598E] bg-[#1F598E] text-white": primary,
-    "border-gray-900 bg-gray-900 text-white": secondary,
-    "border-green-500 bg-green-500 text-white": success,
-    "border-yellow-400 bg-yellow-400 text-white": warning,
-    "border-red-500 bg-red-500 text-white": danger,
     "rounded-full": rounded,
-    "bg-white": outline,
-    "text-blue-500": outline && primary,
-    "text-gray-900": outline && secondary,
-    "text-green-500": outline && success,
-    "text-yellow-400": outline && warning,
-    "text-red-500": outline && danger
+    " bg-[#1F598E] text-white": primary,
+    "bg-[#B3B3B3] text-[#8A898C]": disabled,
+    "border-[1px solid #144272] bg-white text-[#144272]": outline,
+    "active::bg-[#F4B405] active:text-[#fff]": active && !disabled,
+    "hover:bg-[#F4B405] hover:text-[#fff] transition duration-200": hover && !disabled
   });
 
   return (
-    <button {...rest} disabled={loading} className={classes}>
+    <button {...rest} className={classes}>
       {children}
     </button>
   );
