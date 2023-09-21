@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import constants from "./constants";
 
 import Button from "../../components/shared/Button";
 import FormTopLogo from "../../components/auth/AuthTopLogo";
 import VerificationInput from "../../components/auth/VerificationInput";
+import authContext from "../../context/auth-context";
 
 const { TEXT_BASE_CLASSES, RESEND_BUTTON_CLASSES, RESEND_CODE_TIMER_DURATION } = constants;
 
 const CodeVerification = () => {
+  const { registrationData } = useContext(authContext);
   const [showTimer, setShowTimer] = useState<boolean>(true);
   const [duration, setDuration] = useState<number>(RESEND_CODE_TIMER_DURATION);
   const [verificationError, setVerificationError] = useState<string>("");
@@ -38,7 +40,9 @@ const CodeVerification = () => {
   };
   return (
     <>
-      <FormTopLogo>Հաստատեք Ձեր էլ. հասցեն</FormTopLogo>
+      <FormTopLogo>
+        Հաստատեք Ձեր {registrationData.byPhone ? "հեռախոսահամարը" : "էլ.հասցեն"}
+      </FormTopLogo>
       <div className={`${TEXT_BASE_CLASSES} mt-[80px] mb-[60px]`}>
         Մեկանգամյա հաստատման կոդը ուղարկվել է
         <span className={"font-semibold"}> vsaratikyan@gmail.com </span> էլ. հասցեին (

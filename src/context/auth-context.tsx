@@ -6,15 +6,23 @@ const AuthContext = React.createContext({
   onLogin: () => {},
   // eslint-disable-next-line no-unused-vars
   onNextStep: (data: any) => {},
+  // eslint-disable-next-line no-unused-vars
+  onRegistrationDataChange: (data: any) => {},
   currentStep: 1,
-  registrationData: {}
+  registrationData: {
+    byPhone: false,
+    byEmail: false
+  }
 });
 
 export const AuthContextProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
 
-  const [registrationData, setRegistrationData] = useState({});
+  const [registrationData, setRegistrationData] = useState<any>({
+    byPhone: false,
+    byEmail: true
+  });
 
   const loginHandler = () => {
     setIsLoggedIn(true);
@@ -30,7 +38,7 @@ export const AuthContextProvider = (props: any) => {
   };
 
   const handleRegistrationData = (data: object) => {
-    setRegistrationData({ ...data, ...registrationData });
+    setRegistrationData({ ...registrationData, ...data });
   };
 
   return (
@@ -41,6 +49,7 @@ export const AuthContextProvider = (props: any) => {
         onLogin: loginHandler,
         onLogout: logoutHandler,
         onNextStep: nextStepHandler,
+        onRegistrationDataChange: handleRegistrationData,
         currentStep: currentStep
       }}>
       {props.children}

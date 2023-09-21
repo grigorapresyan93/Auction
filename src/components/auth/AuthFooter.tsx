@@ -1,13 +1,19 @@
+import { useContext } from "react";
+import useLocationEnhancer from "../../hooks/useLocationEnhancer";
+
+import AuthContext from "../../context/auth-context";
+
 import constants from "./constants";
 
 const { AUTH_FOOTER_LIST_CLASSES } = constants;
 
 const AuthFooter = () => {
+  const { currentStep } = useContext(AuthContext);
+  const { lastPart } = useLocationEnhancer();
+
   return (
     <div className={"w-full pt-[28px] pb-[8px] border-t border-t-[#8080804D]"}>
-      {{
-        /*condition for showing some text*/
-      } && (
+      {currentStep === 1 && lastPart === "register" && (
         <div className={`text-[#101B28] ${AUTH_FOOTER_LIST_CLASSES} flex justify-center`}>
           Ստեղծելով հաշիվ՝ դուք համաձայնում եք մեր Pi.am-ի
         </div>
@@ -17,9 +23,9 @@ const AuthFooter = () => {
           <li className={`text-[#1376DD]  ${AUTH_FOOTER_LIST_CLASSES}`}>
             <a href={"#"}>Օգտագործման պայմաններ</a>
           </li>
-          {{
-            /*condition for showing {և}*/
-          } && <div className={`${AUTH_FOOTER_LIST_CLASSES} text-[#101B28]`}>և</div>}
+          {currentStep === 1 && lastPart === "register" && (
+            <div className={`${AUTH_FOOTER_LIST_CLASSES} text-[#101B28]`}>և</div>
+          )}
           <li className={`text-[#1376DD]  ${AUTH_FOOTER_LIST_CLASSES}`}>
             <a href={"#"}>Գաղտնիության քաղաքականություն</a>
           </li>

@@ -6,7 +6,7 @@ interface IAuthTopLogoProps {
 }
 const AuthTopLogo: FC<IAuthTopLogoProps> = ({ children }) => {
   return (
-    <div className="flex flex-col space-y-10">
+    <div className="flex flex-col space-y-10 w-[101%]">
       <img src={SmallLogo} alt="logo" className="w-[80px] h-[80px] mx-auto" />
       <div className="font-mardoto leading-7 font-medium text-[#144272] text-[24px] underline underline-offset-8 decoration-2  text-center">
         {children}

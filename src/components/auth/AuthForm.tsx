@@ -1,22 +1,34 @@
+import React, { ChangeEvent, FC, useState } from "react";
+
 import Input from "../shared/Input";
 import Button from "../shared/Button";
 import PhoneInput from "../shared/PhoneInput/PhoneInput";
-import { useLocation } from "react-router-dom";
+
 import constants from "./constants";
-import { FC } from "react";
+import useLocationEnhancer from "../../hooks/useLocationEnhancer";
+
 const { INPUT_FIELDS_FOR_REGISTER } = constants;
 
 interface IAuthFormProps {
   byPhone?: boolean;
   byEmail?: boolean;
+  // eslint-disable-next-line no-unused-vars
+  handleFormSubmit: (data: object) => void;
 }
-const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail }) => {
+
+const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) => {
+  const [formData, setFormData] = useState<object>({});
+  const { lastPart } = useLocationEnhancer();
+
   const handlePhoneValueChange = (value: string) => {
-    console.log(value);
+    setFormData({ ...formData, phone: value });
   };
-  const location = useLocation();
-  const path = location.pathname;
-  const lastPart = path.match(/\/([^/]+)$/)?.[1] || "";
+
+  const handleFieldValueChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+
+    setFormData({ ...formData, [name]: value });
+  };
 
   return (
     <div>
@@ -35,9 +47,13 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail }) => {
                   placeholder={""}
                 />
               ) : field.key === "email_address" && byEmail ? (
-                <Input {...field.props} placeholder="test@gmail.com" />
+                <Input
+                  {...field.props}
+                  placeholder="test@example.com"
+                  onChange={handleFieldValueChange}
+                />
               ) : field.key === "user_name" ? (
-                <Input {...field.props} />
+                <Input {...field.props} onChange={handleFieldValueChange} />
               ) : (
                 ""
               )}
@@ -45,7 +61,11 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail }) => {
           ))}
 
           <div className="flex items-center justify-end">
-            <Button primary rounded className={"py-[12px] w-[191px] justify-center font-semibold"}>
+            <Button
+              primary
+              rounded
+              className={"py-[12px] w-[191px] justify-center font-semibold"}
+              onClick={() => handleFormSubmit(formData)}>
               Ուղարկել կոդը
             </Button>
           </div>
