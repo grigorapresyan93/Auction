@@ -11,8 +11,9 @@ import PhoneInput from "../shared/PhoneInput/PhoneInput";
 import PasswordInputEye from "../shared/PasswordInputEye";
 
 import useLocationEnhancer from "../../hooks/useLocationEnhancer";
+import { useLoginFormValidation } from "../../hooks/useLoginFormValidation";
 
-const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN } = constants;
+const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN, ERROR_TEXT_BASE_CLASSES } = constants;
 
 interface IAuthFormProps {
   byPhone?: boolean;
@@ -22,10 +23,16 @@ interface IAuthFormProps {
 }
 
 const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) => {
-  const [formData, setFormData] = useState<object>({});
+  const [formData, setFormData] = useState<{
+    phone?: string;
+    password?: string;
+    user_name?: string;
+  }>({});
+
   const [passInputType, setPassInputType] = useState<string>("password");
 
   const { lastPart } = useLocationEnhancer();
+  const { showValidationError, validateForm, setShowValidationError } = useLoginFormValidation();
 
   const handlePhoneValueChange = (value: string) => {
     setFormData({ ...formData, phone: value });
@@ -35,6 +42,11 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
     const { name, value } = event.target;
 
     setFormData({ ...formData, [name]: value });
+
+    setShowValidationError({
+      ...showValidationError,
+      [name]: ""
+    });
   };
 
   const currentInputFild =
@@ -43,6 +55,15 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
   const BUTTON_CLASS = classNames("justify-end", {
     "justify-between": lastPart == "sign-in"
   });
+
+  const handleSignIn = () => {
+    const hasNoErrors = validateForm(formData);
+    if (hasNoErrors) {
+      handleFormSubmit(formData);
+
+      setFormData({ user_name: "", password: "" });
+    }
+  };
 
   return (
     <div>
@@ -66,20 +87,38 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
                 onChange={handleFieldValueChange}
               />
             ) : field.key === "user_name" ? (
-              <Input {...field.props} onChange={handleFieldValueChange} />
+              <>
+                <Input
+                  // value={formData[field.key]}
+                  error={showValidationError.user_name.length > 0}
+                  {...field.props}
+                  onChange={handleFieldValueChange}
+                  placeholder={`${lastPart == "sign-in" && "Հեռախոսահամար, էլ. հասցե կամ ID"}`}
+                />
+                {showValidationError.user_name.length > 0 && (
+                  <div className={ERROR_TEXT_BASE_CLASSES}>{showValidationError.user_name}</div>
+                )}
+              </>
             ) : field.key === "password" ? (
-              <Input
-                onChange={handleFieldValueChange}
-                {...field.props}
-                type={passInputType}
-                suffix={
-                  <PasswordInputEye
-                    onToggle={(type) => {
-                      setPassInputType(type);
-                    }}
-                  />
-                }
-              />
+              <>
+                <Input
+                  // value={formData.password}
+                  error={showValidationError.password.length > 0}
+                  onChange={handleFieldValueChange}
+                  {...field.props}
+                  type={passInputType}
+                  suffix={
+                    <PasswordInputEye
+                      onToggle={(type) => {
+                        setPassInputType(type);
+                      }}
+                    />
+                  }
+                />
+                {showValidationError.password.length > 0 && (
+                  <div className={ERROR_TEXT_BASE_CLASSES}>{showValidationError.password}</div>
+                )}
+              </>
             ) : (
               ""
             )}
@@ -98,7 +137,7 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
             primary
             rounded
             className={"py-[12px] w-[191px] justify-center font-semibold"}
-            onClick={() => handleFormSubmit(formData)}>
+            onClick={handleSignIn}>
             {lastPart === "register" ? "Ուղարկել կոդը" : "Մուտք գործել"}
           </Button>
         </div>
