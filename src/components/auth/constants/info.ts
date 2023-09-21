@@ -55,6 +55,28 @@ const INPUT_FIELDS_FOR_REGISTER = [
   }
 ];
 
+const INPUT_FIELDS_FOR_LOGIN = [
+  {
+    key: "user_name",
+    props: {
+      label: "Անուն Ազգանուն",
+      className: INPUT_BASE_CLASSES,
+      type: "text",
+      name: "user_name"
+    }
+  },
+
+  {
+    key: "password",
+    props: {
+      label: "Գաղտնաբառ",
+      className: INPUT_BASE_CLASSES,
+      type: "password",
+      name: "password"
+    }
+  }
+];
+
 const PASS_REQUIREMENTS = [
   {
     key: 1,
@@ -86,6 +108,7 @@ const PASS_REQUIREMENTS = [
 export default {
   INPUT_FIELDS,
   PASS_REQUIREMENTS,
+  INPUT_FIELDS_FOR_LOGIN,
   INPUT_FIELDS_FOR_REGISTER,
   RESEND_CODE_TIMER_DURATION
 };

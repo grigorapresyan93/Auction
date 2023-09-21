@@ -11,13 +11,12 @@ const RegisterWithEmailOrPhone = () => {
     <>
       <FormTopLogo>Գրանցում</FormTopLogo>
       <AuthForm byEmail />
-      <MediaRegistration />
+      <MediaRegistration suggestionText="Կամ գրանցվեք" />
       <button
         onClick={() => {
           authCtx.onNextStep({ name: "test" });
           console.log(authCtx.registrationData);
-        }}
-      >
+        }}>
         test
       </button>
     </>
