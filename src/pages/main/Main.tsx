@@ -11,7 +11,7 @@ function Main() {
       <Link
         to="auth"
         className={
-          "middle none center rounded-lg py-3 px-6 font-sans text-xl mt-28 font-bold uppercase text-green-500 transition-all hover:bg-green-500/10 active:bg-green-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          "middle none center rounded-lg py-3 px-6 font-sans text-xl mt-28 font-bold uppercase text-[#1f598e] transition-all hover:bg-[#1f598e57] active:bg-[#1f598e57] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         }>
         Auth
       </Link>
