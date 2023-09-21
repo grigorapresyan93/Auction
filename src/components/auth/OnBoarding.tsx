@@ -1,8 +1,10 @@
 import React, { FC } from "react";
 
 import OnBoardingTestImage from "../../assets/images/test/on_boarding-test.png";
+import BackIcon from "../../assets/images/arrow-to-left-onboarding.svg";
+import NextIcon from "../../assets/images/arrow-to-right-onboarding.svg";
 
-import { Carousel, IconButton } from "@material-tailwind/react";
+import { Carousel } from "@material-tailwind/react";
 
 interface IArrowProps {
   arrowCLick?: () => void;
@@ -18,6 +20,8 @@ interface IOnBoardingContent {
   heading: string;
   text: string;
 }
+
+const OnBoardingArrowText = "font-mardoto font-medium leading-[20px] text-[20px] text-[#1376DD]";
 
 const onBoardingData = [
   {
@@ -51,27 +55,27 @@ const onBoardingData = [
 
 const PrevArrow: FC<IArrowProps> = ({ arrowCLick }) => {
   return (
-    <IconButton
-      variant="text"
-      color="white"
-      size="lg"
+    <button
       onClick={arrowCLick}
-      className="!absolute bottom-[-13px] left-[48px] text-[#000] mb-[48px]">
-      Prev
-    </IconButton>
+      className="!absolute !w-[102px] bottom-[-13px] left-[48px] text-[#000] mb-[48px] !overflow-visible">
+      <div className={"flex !w-[102px] items-center"}>
+        <img src={BackIcon} alt="backIcon" />
+        <span className={`ml-[16px] ${OnBoardingArrowText}`}>Back</span>
+      </div>
+    </button>
   );
 };
 
 const NextArrow: FC<IArrowProps> = ({ arrowCLick }) => {
   return (
-    <IconButton
-      variant="text"
-      color="white"
-      size="lg"
+    <button
       onClick={arrowCLick}
-      className="!absolute bottom-[-13px] right-[48px] text-[#000] mb-[48px]">
-      Next
-    </IconButton>
+      className="!absolute !w-[132px] border-2 border-[#1376DD] bottom-[-13px] py-[16px] text-center right-[48px] text-[#000] mb-[48px] !overflow-visible">
+      <div className={"flex !w-[132px] items-center justify-center"}>
+        <span className={`mr-[16px] ${OnBoardingArrowText}`}>Next</span>
+        <img src={NextIcon} alt="backIcon" />
+      </div>
+    </button>
   );
 };
 
