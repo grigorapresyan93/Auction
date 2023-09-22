@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useState } from "react";
+import { ChangeEvent, FC, SetStateAction, useState, Dispatch } from "react";
 
 import classNames from "classnames";
 
@@ -11,28 +11,31 @@ import PhoneInput from "../shared/PhoneInput/PhoneInput";
 import PasswordInputEye from "../shared/PasswordInputEye";
 
 import useLocationEnhancer from "../../hooks/useLocationEnhancer";
-import { useLoginFormValidation } from "../../hooks/useLoginFormValidation";
+import { AuthType } from "../../types/auth.types";
 
 const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN, ERROR_TEXT_BASE_CLASSES } = constants;
 
 interface IAuthFormProps {
   byPhone?: boolean;
   byEmail?: boolean;
+  errors: any;
+  setErrors: Dispatch<SetStateAction<AuthType>>;
   // eslint-disable-next-line no-unused-vars
-  handleFormSubmit: (data: object) => void;
+  handleFormSubmit: (data: AuthType) => void;
 }
 
-const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) => {
-  const [formData, setFormData] = useState<{
-    phone?: string;
-    password?: string;
-    user_name?: string;
-  }>({});
+const AuthForm: FC<IAuthFormProps> = ({
+  byPhone,
+  byEmail,
+  errors,
+  setErrors,
+  handleFormSubmit
+}) => {
+  const [formData, setFormData] = useState<AuthType>({});
 
   const [passInputType, setPassInputType] = useState<string>("password");
 
   const { lastPart } = useLocationEnhancer();
-  const { showValidationError, validateForm, setShowValidationError } = useLoginFormValidation();
 
   const handlePhoneValueChange = (value: string) => {
     setFormData({ ...formData, phone: value });
@@ -42,11 +45,7 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
     const { name, value } = event.target;
 
     setFormData({ ...formData, [name]: value });
-
-    setShowValidationError({
-      ...showValidationError,
-      [name]: ""
-    });
+    setErrors({ ...errors, [name]: "" });
   };
 
   const currentInputFild =
@@ -55,15 +54,6 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
   const BUTTON_CLASS = classNames("justify-end", {
     "justify-between": lastPart == "sign-in"
   });
-
-  const handleSignIn = () => {
-    const hasNoErrors = validateForm(formData);
-    if (hasNoErrors) {
-      handleFormSubmit(formData);
-
-      setFormData({ user_name: "", password: "" });
-    }
-  };
 
   return (
     <div>
@@ -82,6 +72,7 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
               />
             ) : field.key === "email_address" && byEmail ? (
               <Input
+                error={errors[field.key]}
                 {...field.props}
                 placeholder="test@gmail.com"
                 onChange={handleFieldValueChange}
@@ -89,21 +80,16 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
             ) : field.key === "user_name" ? (
               <>
                 <Input
-                  // value={formData[field.key]}
-                  error={showValidationError.user_name.length > 0}
+                  error={errors[field.key]}
                   {...field.props}
                   onChange={handleFieldValueChange}
                   placeholder={`${lastPart == "sign-in" && "Հեռախոսահամար, էլ. հասցե կամ ID"}`}
                 />
-                {showValidationError.user_name.length > 0 && (
-                  <div className={ERROR_TEXT_BASE_CLASSES}>{showValidationError.user_name}</div>
-                )}
               </>
             ) : field.key === "password" ? (
               <>
                 <Input
-                  // value={formData.password}
-                  error={showValidationError.password.length > 0}
+                  error={errors[field.key]}
                   onChange={handleFieldValueChange}
                   {...field.props}
                   type={passInputType}
@@ -115,12 +101,12 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
                     />
                   }
                 />
-                {showValidationError.password.length > 0 && (
-                  <div className={ERROR_TEXT_BASE_CLASSES}>{showValidationError.password}</div>
-                )}
               </>
             ) : (
               ""
+            )}
+            {errors[field.key] && (
+              <div className={ERROR_TEXT_BASE_CLASSES}>{errors[field.key]}</div>
             )}
           </div>
         ))}
@@ -137,7 +123,7 @@ const AuthForm: FC<IAuthFormProps> = ({ byPhone, byEmail, handleFormSubmit }) =>
             primary
             rounded
             className={"py-[12px] w-[191px] justify-center font-semibold"}
-            onClick={handleSignIn}>
+            onClick={() => handleFormSubmit(formData)}>
             {lastPart === "register" ? "Ուղարկել կոդը" : "Մուտք գործել"}
           </Button>
         </div>
