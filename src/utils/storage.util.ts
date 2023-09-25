@@ -1,0 +1,15 @@
+export const getLocalStore = (name: string) => {
+  if (typeof localStorage !== "undefined") {
+    const ls = localStorage.getItem(name);
+    return ls ? JSON.parse(ls) : null;
+  }
+  return null;
+};
+
+export const getSessionStore = (name: string) => {
+  if (typeof localStorage !== "undefined") {
+    const ls = localStorage.getItem(name);
+    return ls ? JSON.parse(ls) : null;
+  }
+  return null;
+};

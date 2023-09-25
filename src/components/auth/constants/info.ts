@@ -36,6 +36,7 @@ const INPUT_FIELDS_FOR_REGISTER = [
     props: {
       label: "Անուն Ազգանուն",
       className: INPUT_BASE_CLASSES,
+      placeholder: "",
       type: "text",
       name: "user_name"
     }

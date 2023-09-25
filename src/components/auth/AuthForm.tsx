@@ -83,7 +83,7 @@ const AuthForm: FC<IAuthFormProps> = ({
                   error={errors[field.key]}
                   {...field.props}
                   onChange={handleFieldValueChange}
-                  placeholder={`${lastPart == "sign-in" && "Հեռախոսահամար, էլ. հասցե կամ ID"}`}
+                  placeholder={`${lastPart == "sign-in" ? "Հեռախոսահամար, էլ. հասցե կամ ID" : ""}`}
                 />
               </>
             ) : field.key === "password" ? (
