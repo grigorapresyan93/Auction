@@ -6,6 +6,7 @@ import Button from "../../components/shared/Button";
 import authContext from "../../context/auth-context";
 import FormTopLogo from "../../components/auth/AuthTopLogo";
 import VerificationInput from "../../components/auth/VerificationInput";
+import Timer from "../shared/Timer";
 
 const { TEXT_BASE_CLASSES, RESEND_BUTTON_CLASSES, RESEND_CODE_TIMER_DURATION } = constants;
 
@@ -26,6 +27,14 @@ const CodeVerification = () => {
 
     return () => clearInterval(interval);
   }, [duration]);
+
+  const handleTimerChange = () => {
+    if (duration > 0) {
+      setDuration(duration - 1);
+    } else {
+      setShowTimer(false);
+    }
+  };
 
   const handleResendClick = () => {
     setShowTimer(true);
@@ -53,7 +62,11 @@ const CodeVerification = () => {
         <div className={`mt-[60px]`}>
           <div className={`${TEXT_BASE_CLASSES}`}>
             Կոդը հնարավոր կլինի վերաուղարկել
-            <span className={"text-[#F4B405] text-[20px] font-semibold"}>{` ${duration} `}</span>
+            <Timer
+              duration={duration}
+              handleTimerChange={handleTimerChange}
+              className={"text-[#F4B405] text-[20px] font-semibold"}
+            />
             վայրկյանից
           </div>
         </div>
