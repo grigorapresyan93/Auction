@@ -1,15 +1,15 @@
-import { ChangeEvent, useEffect, useState } from "react";
-
+import { ChangeEvent, useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import constants from "./constants";
 
 import approved from "../../assets/images/approved.svg";
 import declined from "../../assets/images/declined.svg";
-
+import authContext from "../../context/auth-context";
 import Input from "../shared/Input";
 import Button from "../shared/Button";
 import FormTopLogo from "./AuthTopLogo";
 import PasswordInputEye from "../shared/PasswordInputEye";
-
+import { submitStepData } from "../../services/axios.service";
 import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 import { IDebauncedResult, IPasswordValidationResult } from "../../interface/auth.interface";
 
@@ -22,6 +22,8 @@ const {
 } = constants;
 
 const WritePassword = () => {
+  const navigate = useNavigate();
+  const { onRegistrationDataChange, onLogin } = useContext(authContext);
   const [passwordState, setPasswordState] = useState({
     password: "",
     repeat_password: ""
@@ -66,6 +68,16 @@ const WritePassword = () => {
     setInputFields(toggledFields);
   };
 
+  const submitPassword = () => {
+    submitStepData(passwordState)
+      .then((data) => {
+        onRegistrationDataChange(data);
+        onLogin();
+        navigate("/", { replace: true });
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <FormTopLogo>Գրանցում</FormTopLogo>
@@ -101,7 +113,10 @@ const WritePassword = () => {
             rounded
             primary={isTheSame && allPropertiesAreTrue}
             disabled={!isTheSame || !allPropertiesAreTrue}
-            onClick={(e) => e.preventDefault()}
+            onClick={(e) => {
+              e.preventDefault();
+              submitPassword();
+            }}
             className="px-10 py-3">
             Հաստատել
           </Button>

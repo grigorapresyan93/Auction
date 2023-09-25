@@ -32,13 +32,13 @@ const INPUT_FIELDS = [
 
 const INPUT_FIELDS_FOR_REGISTER = [
   {
-    key: "user_name",
+    key: "full_name",
     props: {
       label: "Անուն Ազգանուն",
       className: INPUT_BASE_CLASSES,
       placeholder: "",
       type: "text",
-      name: "user_name"
+      name: "full_name"
     }
   },
   {
@@ -51,24 +51,24 @@ const INPUT_FIELDS_FOR_REGISTER = [
     }
   },
   {
-    key: "email_address",
+    key: "email",
     props: {
       label: "Էլ. հասցե",
       className: INPUT_BASE_CLASSES,
       type: "mail",
-      name: "email_address"
+      name: "email"
     }
   }
 ];
 
 const INPUT_FIELDS_FOR_LOGIN = [
   {
-    key: "user_name",
+    key: "full_name",
     props: {
       label: "Անուն Ազգանուն",
       className: INPUT_BASE_CLASSES,
       type: "text",
-      name: "user_name"
+      name: "full_name"
     }
   },
 

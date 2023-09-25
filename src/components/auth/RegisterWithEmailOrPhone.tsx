@@ -3,15 +3,20 @@ import { useContext, useEffect, useState } from "react";
 import AuthForm from "./AuthForm";
 import FormTopLogo from "./AuthTopLogo";
 import MediaRegistration from "./MediaRegistration";
-
+import { submitStepData } from "../../services/axios.service";
 import AuthContext from "../../context/auth-context";
+import { IAuthSignUp } from "../../interface/auth.interface";
 
 const RegisterWithEmailOrPhone = () => {
-  const { onNextStep, registrationData } = useContext(AuthContext);
+  const { registrationData, onNextStep } = useContext(AuthContext);
   const [signUpErrors, setSignUpErrors] = useState({});
 
-  const handleAuthFormSubmitAction = (data: object) => {
-    onNextStep({ ...registrationData, ...data });
+  const handleAuthFormSubmitAction = (data: IAuthSignUp) => {
+    submitStepData(data)
+      .then((data) => {
+        onNextStep(data);
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {

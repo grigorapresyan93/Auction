@@ -11,7 +11,7 @@ export interface IDebauncedResult {
   validationResult: IPasswordValidationResult;
 }
 export interface IAuthSignIn {
-  user_name: string;
+  full_name: string;
   password: string;
 }
 export interface IAuthSignUp {

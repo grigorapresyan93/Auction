@@ -12,6 +12,7 @@ import PasswordInputEye from "../shared/PasswordInputEye";
 
 import useLocationEnhancer from "../../hooks/useLocationEnhancer";
 import { AuthType } from "../../types/auth.types";
+import { IAuthSignUp } from "../../interface/auth.interface";
 
 const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN, ERROR_TEXT_BASE_CLASSES } = constants;
 
@@ -21,7 +22,7 @@ interface IAuthFormProps {
   errors: any;
   setErrors: Dispatch<SetStateAction<AuthType>>;
   // eslint-disable-next-line no-unused-vars
-  handleFormSubmit: (data: AuthType) => void;
+  handleFormSubmit: (data: IAuthSignUp) => void;
 }
 
 const AuthForm: FC<IAuthFormProps> = ({
@@ -49,7 +50,7 @@ const AuthForm: FC<IAuthFormProps> = ({
   };
 
   const currentInputFild =
-    lastPart === "register" ? INPUT_FIELDS_FOR_REGISTER : INPUT_FIELDS_FOR_LOGIN;
+    lastPart === "sign-in" ? INPUT_FIELDS_FOR_LOGIN : INPUT_FIELDS_FOR_REGISTER;
 
   const BUTTON_CLASS = classNames("justify-end", {
     "justify-between": lastPart == "sign-in"
@@ -70,20 +71,22 @@ const AuthForm: FC<IAuthFormProps> = ({
                 onChange={handlePhoneValueChange}
                 placeholder={""}
               />
-            ) : field.key === "email_address" && byEmail ? (
+            ) : field.key === "email" && byEmail ? (
               <Input
                 error={errors[field.key]}
                 {...field.props}
-                placeholder="test@gmail.com"
+                placeholder="example@gmail.com"
                 onChange={handleFieldValueChange}
               />
-            ) : field.key === "user_name" ? (
+            ) : field.key === "full_name" ? (
               <>
                 <Input
                   error={errors[field.key]}
                   {...field.props}
                   onChange={handleFieldValueChange}
-                  placeholder={`${lastPart == "sign-in" ? "Հեռախոսահամար, էլ. հասցե կամ ID" : ""}`}
+                  placeholder={`${
+                    lastPart == "sign-in" ? "Հեռախոսահամար, էլ. հասցե կամ ID" : "էլ. հասցե "
+                  }`}
                 />
               </>
             ) : field.key === "password" ? (
@@ -124,7 +127,7 @@ const AuthForm: FC<IAuthFormProps> = ({
             rounded
             className={"py-[12px] w-[191px] justify-center font-semibold"}
             onClick={() => handleFormSubmit(formData)}>
-            {lastPart === "register" ? "Ուղարկել կոդը" : "Մուտք գործել"}
+            {lastPart === "sign-in" ? "Մուտք գործել" : "Ուղարկել կոդը"}
           </Button>
         </div>
       </div>
