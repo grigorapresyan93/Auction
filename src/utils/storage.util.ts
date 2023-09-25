@@ -1,4 +1,4 @@
-export const getLocalStore = (name: string) => {
+export const getLocalStoreItem = (name: string) => {
   if (typeof localStorage !== "undefined") {
     const ls = localStorage.getItem(name);
     return ls ? JSON.parse(ls) : null;
@@ -6,7 +6,7 @@ export const getLocalStore = (name: string) => {
   return null;
 };
 
-export const getSessionStore = (name: string) => {
+export const getSessionStoreItem = (name: string) => {
   if (typeof localStorage !== "undefined") {
     const ls = localStorage.getItem(name);
     return ls ? JSON.parse(ls) : null;
