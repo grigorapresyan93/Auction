@@ -63,9 +63,8 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
 
   const LINE_WIDTH = classNames({
     "w-[70px] md:w-[129px]": lastPart === "sign-in",
-    "w-[70px] md:w-[140px]": lastPart === "register"
+    "w-[70px] md:w-[140px]": lastPart === "auth"
   });
-
   return (
     <>
       <div className="mx-auto mt-[140px] mb-[40px]">
@@ -77,7 +76,7 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
       </div>
 
       <div className={"flex flex-row justify-center items-center md:flex-col"}>
-        {lastPart === "register" && (
+        {lastPart === "auth" && (
           <AuthButton
             data={getButtonData(displayPhoneButton)!}
             buttonClickAction={handleCommonButtonClick}
@@ -90,9 +89,9 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
       </div>
 
       <div className={"font-mardoto text-[14px] text-[#101B28CC] mt-[32px] text-center"}>
-        {lastPart == "register" ? "Արդեն ունե ՞ք գրանցված հաշիվ․" : "Դեռ գրանցվա՞ծ չեք․"}
+        {lastPart == "auth" ? "Արդեն ունե ՞ք գրանցված հաշիվ․" : "Դեռ գրանցվա՞ծ չեք․"}
         <span className={"text-[#1376DD] font-bold cursor-pointer"}>
-          {lastPart == "register" ? "Մուտք գործել" : "Գրանցվել"}
+          {lastPart == "auth" ? "Մուտք գործել" : "Գրանցվել"}
         </span>
       </div>
     </>

@@ -5,7 +5,7 @@ function Authentication() {
     <div>
       Authentication Main
       <NavLink to="sign-in">Sign in</NavLink>
-      <NavLink to="register">Register</NavLink>
+      <NavLink to="auth">Register</NavLink>
     </div>
   );
 }

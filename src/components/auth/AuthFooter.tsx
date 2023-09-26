@@ -13,7 +13,7 @@ const AuthFooter = () => {
 
   return (
     <div className={"w-full pt-[28px] pb-[8px] border-t border-t-[#8080804D]"}>
-      {currentStep === 1 && lastPart === "register" && (
+      {currentStep === 1 && lastPart === "auth" && (
         <div className={`text-[#101B28] ${AUTH_FOOTER_LIST_CLASSES} flex justify-center`}>
           Ստեղծելով հաշիվ՝ դուք համաձայնում եք մեր Pi.am-ի
         </div>
@@ -23,7 +23,7 @@ const AuthFooter = () => {
           <li className={`text-[#1376DD]  ${AUTH_FOOTER_LIST_CLASSES}`}>
             <a href={"#"}>Օգտագործման պայմաններ</a>
           </li>
-          {currentStep === 1 && lastPart === "register" && (
+          {currentStep === 1 && lastPart === "auth" && (
             <div className={`${AUTH_FOOTER_LIST_CLASSES} text-[#101B28]`}>և</div>
           )}
           <li className={`text-[#1376DD]  ${AUTH_FOOTER_LIST_CLASSES}`}>
