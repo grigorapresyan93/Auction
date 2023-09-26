@@ -2,20 +2,23 @@ import { useContext, useEffect, useState } from "react";
 
 import constants from "./constants";
 
+import Timer from "../shared/Timer";
+
 import Button from "../../components/shared/Button";
 import authContext from "../../context/auth-context";
 import FormTopLogo from "../../components/auth/AuthTopLogo";
 import VerificationInput from "../../components/auth/VerificationInput";
-import Timer from "../shared/Timer";
+
 import { submitStepData } from "../../services/axios.service";
 
 const { TEXT_BASE_CLASSES, RESEND_BUTTON_CLASSES, RESEND_CODE_TIMER_DURATION } = constants;
 
 const CodeVerification = () => {
-  const { onNextStep, registrationData } = useContext(authContext);
   const [showTimer, setShowTimer] = useState<boolean>(true);
-  const [duration, setDuration] = useState<number>(RESEND_CODE_TIMER_DURATION);
   const [verificationError, setVerificationError] = useState<string>("");
+  const [duration, setDuration] = useState<number>(RESEND_CODE_TIMER_DURATION);
+
+  const { onNextStep, registrationData } = useContext(authContext);
 
   useEffect(() => {
     const interval = setInterval(() => {

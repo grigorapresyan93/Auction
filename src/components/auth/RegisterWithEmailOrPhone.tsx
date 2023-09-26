@@ -3,9 +3,11 @@ import { useContext, useEffect, useState } from "react";
 import AuthForm from "./AuthForm";
 import FormTopLogo from "./AuthTopLogo";
 import MediaRegistration from "./MediaRegistration";
-import { submitStepData } from "../../services/axios.service";
+
 import AuthContext from "../../context/auth-context";
+
 import { IAuthSignUp } from "../../interface/auth.interface";
+import { submitStepData } from "../../services/axios.service";
 
 const RegisterWithEmailOrPhone = () => {
   const { registrationData, onNextStep } = useContext(AuthContext);
@@ -19,9 +21,7 @@ const RegisterWithEmailOrPhone = () => {
       .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    // console.log(registrationData);
-  }, [registrationData]);
+  useEffect(() => {}, [registrationData]);
 
   return (
     <>

@@ -1,6 +1,6 @@
-import { ChangeEvent, FC, SetStateAction, useState, Dispatch } from "react";
-
 import classNames from "classnames";
+
+import { ChangeEvent, FC, SetStateAction, useState, Dispatch } from "react";
 
 import constants from "./constants";
 
@@ -19,7 +19,7 @@ const { INPUT_FIELDS_FOR_REGISTER, INPUT_FIELDS_FOR_LOGIN, ERROR_TEXT_BASE_CLASS
 interface IAuthFormProps {
   byPhone?: boolean;
   byEmail?: boolean;
-  errors: any;
+  errors: AuthType | any;
   setErrors: Dispatch<SetStateAction<AuthType>>;
   // eslint-disable-next-line no-unused-vars
   handleFormSubmit: (data: IAuthSignUp) => void;
@@ -33,10 +33,16 @@ const AuthForm: FC<IAuthFormProps> = ({
   handleFormSubmit
 }) => {
   const [formData, setFormData] = useState<AuthType>({});
-
   const [passInputType, setPassInputType] = useState<string>("password");
 
   const { lastPart } = useLocationEnhancer();
+
+  const currentInputFild =
+    lastPart === "sign-in" ? INPUT_FIELDS_FOR_LOGIN : INPUT_FIELDS_FOR_REGISTER;
+
+  const BUTTON_CLASS = classNames("justify-end", {
+    "justify-between": lastPart == "sign-in"
+  });
 
   const handlePhoneValueChange = (value: string) => {
     setFormData({ ...formData, phone: value });
@@ -48,13 +54,6 @@ const AuthForm: FC<IAuthFormProps> = ({
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
-
-  const currentInputFild =
-    lastPart === "sign-in" ? INPUT_FIELDS_FOR_LOGIN : INPUT_FIELDS_FOR_REGISTER;
-
-  const BUTTON_CLASS = classNames("justify-end", {
-    "justify-between": lastPart == "sign-in"
-  });
 
   return (
     <div>

@@ -1,35 +1,34 @@
-import { ChangeEvent, useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import constants from "./constants";
+import { ChangeEvent, useEffect, useState, useContext } from "react";
 
-import approved from "../../assets/images/approved.svg";
-import declined from "../../assets/images/declined.svg";
-import authContext from "../../context/auth-context";
+import constants from "./constants";
+import FormTopLogo from "./AuthTopLogo";
+
 import Input from "../shared/Input";
 import Button from "../shared/Button";
-import FormTopLogo from "./AuthTopLogo";
 import PasswordInputEye from "../shared/PasswordInputEye";
+
+import authContext from "../../context/auth-context";
+import approved from "../../assets/images/approved.svg";
+import declined from "../../assets/images/declined.svg";
+
 import { submitStepData } from "../../services/axios.service";
 import { usePasswordValidation } from "../../hooks/usePasswordValidation";
 import { IDebauncedResult, IPasswordValidationResult } from "../../interface/auth.interface";
 
-const {
-  INPUT_FIELDS,
-  // ENABLED_BUTTON,
-  // DISABLED_BUTTON,
-  PASS_REQUIREMENTS,
-  ERROR_TEXT_BASE_CLASSES
-} = constants;
+const { INPUT_FIELDS, PASS_REQUIREMENTS, ERROR_TEXT_BASE_CLASSES } = constants;
 
 const WritePassword = () => {
-  const navigate = useNavigate();
-  const { onRegistrationDataChange, onLogin } = useContext(authContext);
+  const [hasFalseValue, setHasFalseValue] = useState(false);
+  const [inputFields, setInputFields] = useState(INPUT_FIELDS);
   const [passwordState, setPasswordState] = useState({
     password: "",
     repeat_password: ""
   });
-  const [inputFields, setInputFields] = useState(INPUT_FIELDS);
-  const [hasFalseValue, setHasFalseValue] = useState(false);
+
+  const { onRegistrationDataChange, onLogin } = useContext(authContext);
+
+  const navigate = useNavigate();
 
   const { isTheSame, debaunced, repDebaunced, validationResult }: IDebauncedResult =
     usePasswordValidation(passwordState.password, passwordState.repeat_password, 1000);

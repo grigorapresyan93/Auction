@@ -1,12 +1,14 @@
-import { FC, Fragment, useState } from "react";
-import { useContext } from "react";
-import AuthContext from "../../context/auth-context";
-import useLocationEnhancer from "../../hooks/useLocationEnhancer";
+import classNames from "classnames";
+
+import { useNavigate } from "react-router-dom";
+import { FC, useState, useContext } from "react";
+
+import constants from "./constants";
 
 import Button from "../shared/Button";
 
-import constants from "./constants";
-import classNames from "classnames";
+import AuthContext from "../../context/auth-context";
+import useLocationEnhancer from "../../hooks/useLocationEnhancer";
 
 const { COMMON_REGISTRATION_BUTTONS, MEDIA_REGISTRATION_BUTTONS } = constants;
 
@@ -45,9 +47,12 @@ const AuthButton: FC<IAuthButtonProps> = ({ data, buttonClickAction }) => {
 };
 
 const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
-  const { onRegistrationDataChange } = useContext(AuthContext);
-  const { lastPart } = useLocationEnhancer();
   const [displayPhoneButton, setDisplayPhoneButton] = useState(true);
+  const { onRegistrationDataChange } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const { lastPart } = useLocationEnhancer();
 
   const handleCommonButtonClick = (buttonType: string) => {
     if (buttonType === "phone") {
@@ -57,6 +62,17 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
     }
     setDisplayPhoneButton(true);
     onRegistrationDataChange({ byPhone: false, byEmail: true });
+  };
+  const handleNavigate = () => {
+    if (lastPart == "auth") {
+      navigate("/auth/sign-in");
+    } else {
+      navigate("/auth");
+    }
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   };
 
   const handleMediaButtonsClick = () => {};
@@ -90,7 +106,7 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
 
       <div className={"font-mardoto text-[14px] text-[#101B28CC] mt-[32px] text-center"}>
         {lastPart == "auth" ? "Արդեն ունե ՞ք գրանցված հաշիվ․" : "Դեռ գրանցվա՞ծ չեք․"}
-        <span className={"text-[#1376DD] font-bold cursor-pointer"}>
+        <span onClick={handleNavigate} className={"text-[#1376DD] font-bold cursor-pointer"}>
           {lastPart == "auth" ? "Մուտք գործել" : "Գրանցվել"}
         </span>
       </div>

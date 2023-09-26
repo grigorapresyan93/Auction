@@ -1,14 +1,16 @@
 import { useContext } from "react";
+
+import constants from "./constants";
+
 import useLocationEnhancer from "../../hooks/useLocationEnhancer";
 
 import AuthContext from "../../context/auth-context";
-
-import constants from "./constants";
 
 const { AUTH_FOOTER_LIST_CLASSES } = constants;
 
 const AuthFooter = () => {
   const { currentStep } = useContext(AuthContext);
+
   const { lastPart } = useLocationEnhancer();
 
   return (

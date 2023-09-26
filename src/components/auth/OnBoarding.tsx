@@ -1,8 +1,8 @@
 import React, { FC } from "react";
 
-import OnBoardingTestImage from "../../assets/images/test/on_boarding-test.png";
 import BackIcon from "../../assets/images/arrow-to-left-onboarding.svg";
 import NextIcon from "../../assets/images/arrow-to-right-onboarding.svg";
+import OnBoardingTestImage from "../../assets/images/test/on_boarding-test.png";
 
 import { Carousel } from "@material-tailwind/react";
 
