@@ -65,9 +65,9 @@ const MediaRegistration: FC<IMediaRegistrationProps> = ({ suggestionText }) => {
   };
   const handleNavigate = () => {
     if (lastPart == "auth") {
-      navigate("/auth/sign-in");
+      navigate("/auth/sign-in", { replace: true });
     } else {
-      navigate("/auth");
+      navigate("/auth", { replace: true });
     }
     window.scrollTo({
       top: 0,
