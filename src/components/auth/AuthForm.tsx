@@ -124,6 +124,7 @@ const AuthForm: FC<IAuthFormProps> = ({
             active
             primary
             rounded
+            disabled={lastPart === "auth" && Object.entries(formData).length < 2}
             className={"py-[12px] w-[191px] justify-center font-semibold"}
             onClick={() => handleFormSubmit(formData)}>
             {lastPart === "sign-in" ? "Մուտք գործել" : "Ուղարկել կոդը"}
